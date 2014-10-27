@@ -1,0 +1,13 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: $dark;
+}
+
+a, a:visited {
+  color: $dark;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}

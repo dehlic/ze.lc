@@ -1,0 +1,17 @@
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+# Misc #
+###################
+
+main.css
+_assets
+node_modules
+.sass-cache
+ai-cache/*
+meta
+dist

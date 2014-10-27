@@ -1,0 +1,18 @@
+{{#if urls}}
+  <h1>Short URL history</h1>
+  <ul>
+  {{#each urls}}
+    <li>
+      <div class="icon-link">
+
+      </div>
+      <h2><a href="{{short_url}}" target="_blank">{{short_url}}</a></h2>
+      <h3>
+        <img src="http://www.google.com/s2/favicons?domain={{domain}}" />
+        <a href="{{url}}" target="_blank">{{url}}</a>
+      </h3>
+      <h4><div class="icon-time">&nbsp;</div><span>{{prettyTime}}<span></h4>
+    </li>
+  {{/each}}
+  </ul>
+{{/if}}
