@@ -22,7 +22,6 @@ module.exports = Backbone.View.extend({
   className: 'form-view',
 
   events: {
-    'click button': 'getShortUrl',
     'click .icon-settings': 'toggleAdvanced'
   },
 
@@ -39,6 +38,7 @@ module.exports = Backbone.View.extend({
       custom_url: this.$el.find('#custom-url').val()
     });
     this.model.on('change:short_url', _.bind(this.saveCallback, this));
+    this.model.on('invalid', _.bind(this.displayError, this));
   },
 
   getShortUrl: function () {
@@ -70,15 +70,22 @@ module.exports = Backbone.View.extend({
     this.el.classList.add('short-url-visible');
   },
 
-  displayError: function(model, request) {
-    var $errorViewEl = new ErrorView({error: request.response}).render().$el;
+  displayError: function (model, request) {
+    var $errorViewEl = new ErrorView({error: request}).render().$el;
     $('body').append($errorViewEl);
   },
 
-  toggleAdvanced: function() {
+  toggleAdvanced: function () {
     this.el.classList.toggle('advanced');
     this.$el.find('#custom-url').val('');
   },
+
+  submitForm: function (e) {
+    e.preventDefault();
+    this.getShortUrl();
+  },
+
+
 
   render: function () {
     this.$el.html(template());
@@ -86,6 +93,7 @@ module.exports = Backbone.View.extend({
 
   bindEvents: function () {
     this.$el.on('change', 'input', _.bind(this.updateLocalModel, this));
+    this.$el.on('submit', 'form', _.bind(this.submitForm, this));
   }
 
 });

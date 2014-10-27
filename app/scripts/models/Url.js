@@ -52,5 +52,16 @@ module.exports = Backbone.Model.extend({
       resp.short_url = utils.baseUrl + resp.short_url;
     }
     return resp;
+  },
+
+  validate: function(attributes) {
+    if (!attributes.url) {
+      return 'Url can\'t be blank';
+    }
+
+    // Todo: Add URL validation
+
+    return false;
   }
+
 });

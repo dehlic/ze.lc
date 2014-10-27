@@ -14,12 +14,17 @@ module.exports = Backbone.View.extend({
 
   initialize: function (options) {
     this.options = options || {};
-    this.error = JSON.parse(this.options.error);
+    // Different error object between local and remote validation.
+    if (typeof(this.options.error) === 'string') {
+      this.errorMessage = this.options.error;
+    } else {
+      this.errorMessage = JSON.parse(this.options.error.response).message;
+    }
   },
 
   render: function () {
     this.$el.html(template({
-      message: this.error.message
+      message: this.errorMessage
     }));
     setTimeout(_.bind(this.remove, this), 5000);
 

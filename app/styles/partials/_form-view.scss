@@ -1,12 +1,12 @@
 .form-view {
   margin-bottom: 80px;
   text-align: center;
-  label, input[type=url] {
+  label, input[type=url], input[type=text] {
     text-align: left;
     float: left;
     width: 432px;
   }
-  input[type=url] {
+  input[type=url], input[type=text] {
     margin-bottom: 40px;
   }
   &.advanced {
@@ -33,7 +33,7 @@
     background-position: center center;
     cursor: pointer;
   }
-  input[type=url] {
+  input[type=url], input[type=text] {
     border: 1px solid $light;
     font-family: 'Montserrat', sans-serif;
     color: $medium;
