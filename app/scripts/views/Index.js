@@ -77,6 +77,7 @@ module.exports = Backbone.View.extend({
 
   toggleAdvanced: function() {
     this.el.classList.toggle('advanced');
+    this.$el.find('#custom-url').val('');
   },
 
   render: function () {

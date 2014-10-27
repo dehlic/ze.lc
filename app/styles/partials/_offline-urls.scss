@@ -7,13 +7,16 @@
   ul {
     @extend %clearfix;
     width: 100%;
+
     li {
       float: left;
       width: 100%;
-      border-left: 5px solid $main-color;
+      border-left: 10px solid $main-color;
+      border-top: 1px solid $main-color;
       padding: 20px 0px;
       &:nth-child(2n + 1) {
-        border-left: 5px solid $light;
+        border-left: 10px solid $light;
+        border-top: 1px solid $light;
       }
       .icon-link {
         float: left;
