@@ -56,13 +56,23 @@
         border-left: 10px solid $light;
         border-top: 1px solid $light;
       }
-      .icon-link {
+      .copy {
         float: left;
         width: 21%;
         height: 100px;
         position: relative;
-        background-size: 70% 70%;
+        background-size: 50% auto;
         background-position: center center;
+        cursor: pointer;
+        transition: background-image;
+        position: relative;
+        span {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          text-align: center;
+          font-size: 10px;
+        }
       }
       h2, h3, h4 {
         width: 79%;

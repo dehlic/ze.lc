@@ -58,6 +58,19 @@ module.exports = function(grunt) {
           dest: 'app/images/dist'
         }],
         options: {
+          customselectors: {
+            'copy-light': [
+              '#offline-urls ul.main-urls li:nth-child(2n+1) .copy',
+              '.form-view button.copy'
+            ],
+            'copy-medium': [
+              '#offline-urls ul.main-urls li:nth-child(2n) .copy',
+            ],
+            'copy-dark': [
+              '#offline-urls ul.main-urls li:nth-child(2n) .copy.zeroclipboard-is-hover',
+              '#offline-urls ul.main-urls li:nth-child(2n+1) .copy.zeroclipboard-is-hover'
+            ],
+          }
         }
       }
     },
@@ -94,7 +107,17 @@ module.exports = function(grunt) {
             'images/dist/{,*/}*.css',
             'images/as-is/{,*/}*.{svg,ico}'
           ]
-        }]
+        },
+        {
+          expand: true,
+          dot: true,
+          cwd: 'node_modules/zeroclipboard/dist',
+          dest: 'dist/scripts',
+          src: [
+            '*.swf'
+          ]
+        }
+        ]
       }
     }
   });

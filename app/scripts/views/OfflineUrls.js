@@ -3,6 +3,7 @@
 var Backbone = require('backbone');
 var $ = require('jbone');
 var _ = require('lodash');
+var ZeroClipboard = require('zeroclipboard');
 var checkedHelper = require('../helpers/checkedHelper');
 var template = require('../templates/OfflineUrls.hbs');
 Backbone.$ = $;
@@ -36,6 +37,8 @@ module.exports = Backbone.View.extend({
       urls: this.collection.templatize(),
       checkedFilter: this.checkedFilter
     }));
+    this.Clipboard = new ZeroClipboard(this.$el.find('.copy'));
+    this.Clipboard.on('aftercopy', _.bind(this.afterCopy, this));
     return this;
   },
 
@@ -50,6 +53,14 @@ module.exports = Backbone.View.extend({
     }
   },
 
+  afterCopy: function (e) {
+    var $target = $(e.target).find('span');
+    $target.html('copied!');
+    setTimeout(function() {
+      $target.html('copy!');
+    }, 3000);
+  },
+
   reFetch: function () {
     this.collection.fetch();
   },
@@ -57,7 +68,6 @@ module.exports = Backbone.View.extend({
   filterUrls: function () {
     var offsetTime = $('.url-filter input:checked').attr('data-offset-time');
     this.checkedFilter = offsetTime;
-    console.log(this.checkedFilter);
     var today = new Date();
     var hourago = new Date(today.getTime() - (parseInt(offsetTime)*60*60)).getTime();
     this.collection.fetch({reset: false});

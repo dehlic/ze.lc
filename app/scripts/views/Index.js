@@ -3,7 +3,9 @@
 var Backbone = require('backbone');
 var $ = require('jbone');
 var _ = require('lodash');
+var ZeroClipboard = require('zeroclipboard');
 var template = require('../templates/Index.hbs');
+var shortUrlTemplate = require('../templates/ShortUrl.hbs');
 var reqwest = require('reqwest').compat;
 $.ajax = reqwest;
 
@@ -66,13 +68,27 @@ module.exports = Backbone.View.extend({
   },
 
   displayShortUrl: function () {
-    this.$el.find('#short-url').html(this.model.get('short_url'));
+    this.$el.find('#short-url').html(
+      shortUrlTemplate({
+        shortUrl: this.model.get('short_url')
+      })
+    );
     this.el.classList.add('short-url-visible');
+    this.Clipboard = new ZeroClipboard(this.$el.find('.copy'));
+    this.Clipboard.on('aftercopy', _.bind(this.afterCopy, this));
   },
 
   displayError: function (model, request) {
     var $errorViewEl = new ErrorView({error: request}).render().$el;
     $('body').append($errorViewEl);
+  },
+
+  afterCopy: function (e) {
+    var $target = $(e.target);
+    $target.html('copied!');
+    setTimeout(function() {
+      $target.html('copy!');
+    }, 3000);
   },
 
   toggleAdvanced: function () {

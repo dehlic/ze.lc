@@ -21,7 +21,8 @@
     "reqwest": "~1.1.4",
     "lodash": "~2.4.1",
     "backbone.localstorage": "~1.1.10",
-    "vague-time": "~1.1.0"
+    "vague-time": "~1.1.0",
+    "zeroclipboard": "~2.1.6"
   },
   "devDependencies": {
     "browserify": "^6.2.0",

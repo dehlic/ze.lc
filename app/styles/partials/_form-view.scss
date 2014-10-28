@@ -44,10 +44,10 @@
     margin-bottom: 5px;
   }
 
-  button {
+  button.shorten, button.copy {
     font-family: 'Montserrat', sans-serif;
     border: none;
-    background: $dark;
+    background-color: $dark;
     padding: 10px 30px;
     color: $white;
     font-size: 36px;
@@ -56,7 +56,22 @@
     width: 250px;
     transition: background .3s;
     &:hover {
-      background: $medium;
+      background-color: $medium;
+    }
+  }
+  button.copy {
+    font-size: 14px;
+    padding: 5px 15px;
+    margin-top: 40px;
+    width: 100px;
+    padding: 8px 35px 8px 15px;
+    margin-top: 40px;
+    width: auto;
+    background-size: auto 70%;
+    background-position: 90% center;
+    background-color: $dark;
+    &.zeroclipboard-is-hover {
+      background-color: $medium;
     }
   }
   #short-url {
