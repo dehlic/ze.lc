@@ -1,13 +1,51 @@
 #offline-urls {
+  @extend %clearfix;
   @include pagewidth();
+  .empty {
+    margin: 20px auto;
+    float: left;
+  }
   h1 {
     font-size: 16px;
     text-transform: uppercase;
+    margin-bottom: 20px;
   }
-  ul {
+  fieldset.url-filter {
+    float: right;
+    position: relative;
+    z-index: 1;
+    top: 1px;
+    input {
+      opacity: 0;
+      position: absolute;
+      width: 0;
+      height: 0;
+      & + label {
+        float: left;
+        font-size: 12px;
+        padding: 5px 10px;
+        border-top: 1px solid $light;
+        border-left: 1px solid $light;
+        cursor: pointer;
+        display: block;
+        background: $white;
+        &:hover {
+          border-top: 1px solid $main-color;
+          border-left: 1px solid $main-color;
+        }
+      }
+      &:checked + label {
+        border-top: 1px solid $main-color;
+        border-left: 1px solid $main-color;
+        background: $main-color;
+        color: $white;
+      }
+    }
+  }
+  ul.main-urls {
     @extend %clearfix;
     width: 100%;
-
+    float: left;
     li {
       float: left;
       width: 100%;

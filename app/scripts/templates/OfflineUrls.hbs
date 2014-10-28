@@ -1,6 +1,18 @@
+<h1>Short URL history</h1>
+<fieldset class="url-filter">
+  <input name="filter" id="last-hour" type="radio" class="filter" data-offset-time="1000"{{checkedHelper checkedFilter "1000"}} />
+  <label for="last-hour">last hour</label>
+  <input name="filter" id="last-day" type="radio" class="filter" data-offset-time="24000"{{checkedHelper checkedFilter "24000"}} />
+  <label for="last-day">last day</label>
+  <input name="filter" id="last-week" type="radio" class="filter" data-offset-time="168000"{{checkedHelper checkedFilter "168000"}} />
+  <label for="last-week">last week</label>
+  <input name="filter" id="last-month" type="radio" class="filter" data-offset-time="720000"{{checkedHelper checkedFilter "720000"}} />
+  <label for="last-month">last month</label>
+  <input name="filter" id="always" type="radio" class="clear"{{checkedHelper checkedFilter "~"}} />
+  <label for="always">always</label>
+</fieldset>
+<ul class="main-urls">
 {{#if urls}}
-  <h1>Short URL history</h1>
-  <ul>
   {{#each urls}}
     <li>
       <div class="icon-link">
@@ -15,4 +27,6 @@
     </li>
   {{/each}}
   </ul>
+{{else}}
+  <span class="empty">No recent shortned urls...</span>
 {{/if}}

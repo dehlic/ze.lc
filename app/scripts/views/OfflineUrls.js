@@ -3,6 +3,7 @@
 var Backbone = require('backbone');
 var $ = require('jbone');
 var _ = require('lodash');
+var checkedHelper = require('../helpers/checkedHelper');
 var template = require('../templates/OfflineUrls.hbs');
 Backbone.$ = $;
 
@@ -15,10 +16,15 @@ module.exports = Backbone.View.extend({
 
   className: '',
 
-  events: {},
+  events: {
+    'click .url-filter .filter': 'filterUrls',
+    'click .url-filter li.clear': 'reFetch'
+  },
 
   initialize: function (options) {
     this.options = options || {};
+    this.checkedFilter = '~';
+
     this.collection = new Urls();
 
     this.bindEvents();
@@ -27,7 +33,8 @@ module.exports = Backbone.View.extend({
 
   render: function () {
     this.$el.html(template({
-      urls: this.collection.templatize()
+      urls: this.collection.templatize(),
+      checkedFilter: this.checkedFilter
     }));
     return this;
   },
@@ -43,7 +50,21 @@ module.exports = Backbone.View.extend({
     }
   },
 
+  reFetch: function () {
+    this.collection.fetch();
+  },
+
+  filterUrls: function () {
+    var offsetTime = $('.url-filter input:checked').attr('data-offset-time');
+    this.checkedFilter = offsetTime;
+    console.log(this.checkedFilter);
+    var today = new Date();
+    var hourago = new Date(today.getTime() - (parseInt(offsetTime)*60*60)).getTime();
+    this.collection.fetch({reset: false});
+    this.collection.reset(this.collection.filterByDate(hourago));
+  },
+
   bindEvents: function () {
-    this.collection.on('add', _.bind(this.render, this));
+    this.collection.on('add reset', _.bind(this.render, this));
   }
 });

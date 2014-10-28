@@ -21,5 +21,11 @@ module.exports = Backbone.Collection.extend({
 
   comparator: function(model) {
     return -(model.get('created_at'));
+  },
+
+  filterByDate: function (timestamp) {
+    return this.filter(function(model) {
+      return model.attributes.created_at > timestamp;
+    });
   }
 });
