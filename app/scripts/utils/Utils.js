@@ -4,6 +4,6 @@ var Backbone = require('backbone');
 module.exports = Backbone.Model.extend({
   defaults: {
   },
-  apiUrl: 'http://api.ze.lc/v1/',
-  baseUrl: 'http://ze.lc/'
+  apiUrl: 'http://api.staging.ze.lc/v1/',
+  baseUrl: 'http://staging.ze.lc/'
 });
